@@ -5,6 +5,12 @@ import os, shlex,array, urllib
 def index(request):
     return render_to_response('files/index.html')
 	
+def browse(request):
+    return render_to_response('files/browse.html')
+
+def share(request):
+    return render_to_response('files/share.html')
+
 def dirlist(request):
    r=['<ul class="jqueryFileTree" style="display: none;">']
    try:

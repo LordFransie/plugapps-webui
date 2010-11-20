@@ -3,30 +3,7 @@
 
 {% block filespage %}
 <div id="filespage">
-<script type="text/javascript" src="/static/jqueryFileTree.js"></script>
-<h2>File Browser</h2>
-<div id="files"></div>
-<script type="text/javascript"><!--
-
-function openFile(file) {
-    alert('Still need to implement this');
-}
-
-
-$(document).ready( function() {
-    $('#files').fileTree({
-        root: '/media/',
-        script: '/files/dirlist',
-        expandSpeed: -1,
-        collapseSpeed: -1,
-        loadMessage: 'Loading....',
-        multiFolder: true
-    }, function(file) {
-        openFile(file);
-    });
-});
-
-
---></script>
+<h2>Your Files</h2>
+<p>Plugapps will allow you to browse and share your local drives</p>
 </div><!-- filespage -->
 {% endblock %}
