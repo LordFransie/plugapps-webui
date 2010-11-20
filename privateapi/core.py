@@ -78,13 +78,13 @@ def getbaseos():
        baseos_cmd = "uname -n"
        args = shlex.split(baseos_cmd)
        baseos_process = subprocess.Popen(args,stdout=subprocess.PIPE)
-       return baseos_process.stdout.read()
+       return baseos_process.stdout.read().rstrip('\n')
 
 def getkernelversion():
        kernv_cmd = "uname -rv"
        args = shlex.split(kernv_cmd)
        kernv_process = subprocess.Popen(args,stdout=subprocess.PIPE)
-       return kernv_process.stdout.read()
+       return kernv_process.stdout.read().rstrip('\n')
 
 def getdevicename():
        devicename_cmd = "uname -i"

@@ -13,6 +13,19 @@
     <link rel="stylesheet" type="text/css" href="/static/jqueryFileTree.css" />
 	{% include "ajax.html" %}
   </head>
+<script type="text/javascript"><!--
+
+function reloadCode() {
+$.ajax({
+        method: 'GET',
+        cache: false,
+        url : '/api/reloadcode'
+});
+}
+
+runUpdates();
+
+--></script>
 
 <body style="margin:0;padding:0;">
 <div id="main">
@@ -26,7 +39,7 @@
 <li><a href="/apps">Apps</a></li>
 <li><a href="/system">System</a></li>
 <li><a href="/system/reboot">Reboot</a></li>
-<li><a href="/admin">Admin</a></li>
+<li><a href="#" onClick="reloadCode();">Reload Code</a></li>
 </ul>
 <span id="login">Login</span><!-- login -->
 </div><!-- page_body_toolbar -->
