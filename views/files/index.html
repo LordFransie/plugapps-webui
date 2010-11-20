@@ -1,9 +1,9 @@
-{% extends "layout.html" %}
+{% extends "files/filestemplate.html" %}
 {% block title %}Files{% endblock %}
 
-{% block content %}
+{% block filespage %}
+<div id="filespage">
 <script type="text/javascript" src="/static/jqueryFileTree.js"></script>
-<div class="page_body_section">
 <h2>File Browser</h2>
 <div id="files"></div>
 <script type="text/javascript"><!--
@@ -28,5 +28,5 @@ $(document).ready( function() {
 
 
 --></script>
-</div><!-- page_body_section -->
+</div><!-- filespage -->
 {% endblock %}

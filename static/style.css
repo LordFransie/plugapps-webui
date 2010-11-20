@@ -196,6 +196,13 @@ box-shadow: 0 12px 23px #333;
       margin-bottom:24px;
 }
       
+#main #inner-wrapper #content .page_body_section #filespage,
+#main #inner-wrapper #content .page_body_section_with_sidebar #filespage {
+      margin-left:160px;
+      margin-bottom:24px;
+}
+
+
 #main #inner-wrapper #content .page_body_section input#directory {
 width:300px;
 }

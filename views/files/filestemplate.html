@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="page_body_section_with_sidebar">
+<div id="sidebar">
+<ul>
+<li><a href="/files/browse">Browse</a></li>
+<li><a href="/files/shares">Shared</a></li>
+</ul>
+</div><!-- sidebar -->
+
+{% block filespage %}{% endblock %}
+
+</div><!-- page_body_section_with_sidebar -->
+{% endblock %}
