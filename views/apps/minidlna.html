@@ -1,3 +1,7 @@
+{% extends 'apps/apptemplate.html' %}
+{% block title %}MiniDLNA{% endblock %}
+
+{% block apppage %}
 <script type="text/javascript"><!--
 
 
@@ -7,7 +11,7 @@ function start() {
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/init/api/startapp?name=' + package_name,
+        url : '/api/startapp?name=' + package_name,
         dataType : 'text',
         success: function (text) { 
             checkStatus();
@@ -19,7 +23,7 @@ function stop() {
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/init/api/stopapp?name=' + package_name,
+        url : '/api/stopapp?name=' + package_name,
         dataType : 'text',
         success: function (text) { 
             checkStatus();
@@ -31,7 +35,7 @@ function isInstalled() {
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/init/api/isinstalled?name=' + package_name,
+        url : '/api/isinstalled?name=' + package_name,
         dataType : 'text',
         success: function (text) { 
             if (text == "False") {
@@ -45,13 +49,13 @@ $.ajax({
 }
 
 function checkStatus() {
-$('#runstatus').html('<img style="width:18px;height:18px;margin:0;" src="/init/static/images/loader.gif"/>');
+$('#runstatus').html('<img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/>');
 var startLink =  'Stopped - <a style="text-decoration:underline;" href="#" onclick="javascript:start();">Click here to start</a>'
 var stopLink =  'Running - <a style="text-decoration:underline;" href="#" onclick="javascript:stop();">Click here to stop</a>'
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/init/api/isrunning?name=' + package_name,
+        url : '/api/isrunning?name=' + package_name,
         dataType : 'text',
         success: function (text) { 
             if (text == "False") {
@@ -67,6 +71,9 @@ $.ajax({
 isInstalled();
 checkStatus();
 --></script>
-<h2>Minidlna is: <span id="installstatus"><img style="width:18px;height:18px;margin:0;" src="/init/static/images/loader.gif"/></span></h2>
+<div id="apppage">
+<h2>Minidlna is: <span id="installstatus"><img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></span></h2>
 
-<p>Daemon is: <span id="runstatus"><img style="width:18px;height:18px;margin:0;" src="/init/static/images/loader.gif"/></span></p>
+<p>Daemon is: <span id="runstatus"><img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></span></p>
+</div><!-- apppage -->
+{% endblock %}

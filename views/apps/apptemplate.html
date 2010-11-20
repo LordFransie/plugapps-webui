@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="page_body_section_with_sidebar">
+<div id="sidebar">
+<ul>
+{% for app in installed_apps %}
+<li><a href="/apps/{{ app }}">{{ app }}</a></li>
+{% endfor %}
+</ul>
+</div><!-- sidebar -->
+
+{% block apppage %}{% endblock %}
+
+</div><!-- page_body_section_with_sidebar -->
+{% endblock %}
