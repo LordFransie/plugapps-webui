@@ -12,6 +12,11 @@ text-decoration:none;
 clear:both;
 }
 
+.current_page_item {
+font-weight:bold;
+text-decoration:underline;
+}
+
 span.device-stats {
 display: inline-block;
 }

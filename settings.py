@@ -83,6 +83,14 @@ TEMPLATE_DIRS = (
     '/opt/webui/views'
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+	'django.core.context_processors.auth',
+	'django.core.context_processors.debug',
+	'django.core.context_processors.i18n',
+	'django.core.context_processors.media',
+	'django.core.context_processors.request',
+)
+
 INSTALLED_APPS = (
     'django.contrib.admin',	
     'django.contrib.auth',
@@ -90,8 +98,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-	'system',
-	'files',
-	'apps',
-	'home',
+    'webui.system',
+    'webui.files',
+    'webui.apps',
+    'webui.home',
 )

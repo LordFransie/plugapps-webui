@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	(r'^dirlist$', 'files.views.dirlist'),
-	(r'^browse', 'files.views.browse'),
-	(r'^share', 'files.views.share'),
-	(r'^$', 'files.views.index'),
+	(r'^browse', 'files.views.browse', {}, 'browse'),
+	(r'^share', 'files.views.share', {}, 'share'),
+	(r'^$', 'files.views.index', {}, 'files'),
 )

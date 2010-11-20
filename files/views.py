@@ -1,15 +1,17 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from django.template import RequestContext
+
 import os, shlex,array, urllib
 
 def index(request):
-    return render_to_response('files/index.html')
+    return render_to_response('files/index.html', {}, context_instance=RequestContext(request))
 	
 def browse(request):
-    return render_to_response('files/browse.html')
+    return render_to_response('files/browse.html', {}, context_instance=RequestContext(request))
 
 def share(request):
-    return render_to_response('files/share.html')
+    return render_to_response('files/share.html', {}, context_instance=RequestContext(request))
 
 def dirlist(request):
    r=['<ul class="jqueryFileTree" style="display: none;">']
