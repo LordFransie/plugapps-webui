@@ -6,10 +6,5 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': settings.STATIC_DOC_ROOT}),
-	(r'^system$', include('system.urls')),
-	(r'^files$', include('files.urls')),
-	(r'^apps$', include('apps.urls)),
-	(r'^', 'home.views.index'),
+	(r'^$', 'home.views.index', {}, 'home'),
 )

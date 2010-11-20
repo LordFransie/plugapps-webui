@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
+from django.views.generic.simple import redirect_to
 
 urlpatterns = patterns('',
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
@@ -8,5 +9,6 @@ urlpatterns = patterns('',
 	(r'^system/', include('system.urls')),
 	(r'^files/', include('files.urls')),
 	(r'^apps/', include('apps.urls')),
-	(r'^$', 'home.views.index'),
+	(r'^home/', include('home.urls')),
+	(r'^$', redirect_to, {'url': '/home/'}),
 )
