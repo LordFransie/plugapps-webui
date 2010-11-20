@@ -1,5 +1,6 @@
+{% extends 'system/systemtemplate.html' %}
 
-
+{% block configpage %}
 <script type="text/javascript">
 function checkUpdates() {
 $.ajax({
@@ -26,7 +27,7 @@ $.ajax({
 
 checkUpdates();
 </script>
-
+<div id="configpage">
 <h2>Software</h2>
 <p><span id="os"><img alt="checking" src="/static/images/bar.gif"/></span></p>
 
@@ -62,4 +63,6 @@ checkUpdates();
        letter-spacing: 2px;"
        onClick="location.href='/';"/>
 </span>
-</div>
+</div><!-- upgradebuttons -->
+</div><!-- configpage -->
+{% endblock %}

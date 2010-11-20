@@ -1,8 +1,11 @@
+{% extends 'system/systemtemplate.html' %}
 
+{% block configpage %}
 <script type="text/javascript" src="/static/plugins/jqplot.pieRenderer.min.js"></script>
 <script type="text/javascript"><!--
 $.jqplot.config.enablePlugins = true;
 --></script>
+<div id="configpage">
 <h2>Storage</h2>
 {% for details in mounted_device_details %}
 <h4 class="storage-section">Mountpoint: {{ details.5 }}</h4>
@@ -31,3 +34,5 @@ plot1 = $.jqplot('{{ details.6 }}', [line1], {
 </div><!-- plot-area -->
 <div id="clear"></div>
 {% endfor %}
+</div><!-- configpage -->
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="page_body_section_with_sidebar">
+<div id="sidebar">
+<ul>
+<li><a href="/system/">About Plug</a></li>
+<li><a href="/system/storage">Storage</a></li>
+<li><a href="/system/software">Software</a></li>
+<li><a href="/system/networking">Networking</a></li>
+</ul>
+</div><!-- sidebar -->
+
+{% block configpage %}{% endblock %}
+
+</div><!-- page_body_section_with_sidebar -->
+{% endblock %}

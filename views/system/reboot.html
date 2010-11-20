@@ -1,8 +1,7 @@
-{% extends 'layout.html' %}
+{% extends 'system/systemtemplate.html' %}
 
-{% block content %}
-
-<div class="page_body_section">
+{% block configpage %}
+<div id="configpage">
 <div id="buttonarea">
 <p>Reboot?</p>
 <span class="button">
@@ -26,6 +25,6 @@
        letter-spacing: 2px;"
        onClick="location.href='/';"/>
 </span>
-</div>
-</div><!-- page_body_section -->
+</div><!-- buttonarea -->
+</div><!-- configpage -->
 {% endblock %}

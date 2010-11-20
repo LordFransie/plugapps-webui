@@ -1,6 +1,6 @@
-{% extends 'layout.html' %}
+{% extends 'system/systemtemplate.html' %}
 
-{% block content %}
+{% block configpage %}
 <script type="text/javascript"><!--
 function updateLoad() {
 $.ajax({
@@ -47,16 +47,6 @@ $.ajax({
 var uptimeInterval = setInterval(updateUptime, 60000);
 --></script>
 
-<div class="page_body_section_with_sidebar">
-<div id="sidebar">
-<ul>
-<li><a href="/system/">About Plug</a></li>
-<li><a href="javascript:loadConfig('storage');">Storage</a></li>
-<li><a href="javascript:loadConfig('software');">Software</a></li>
-<li><a href="javascript:loadConfig('networking');">Networking</a></li>
-</ul>
-</div><!-- sidebar -->
-
 <div id="configpage">
 <h4>Device Information</h4>
 <p>Device: {{ devicename }}</p>
@@ -72,5 +62,4 @@ var uptimeInterval = setInterval(updateUptime, 60000);
 <p>Memory free: <span id="memfree">{{ memfree }}</span>MB</p>
 </div><!-- configpage -->
 <div style="clear:both;"></div>
-</div><!-- page_body_section_with_sidebar -->
 {% endblock %}
