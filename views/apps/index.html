@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Apps{% endblock %}
+{% block content %}
+<div class="page_body_section_with_sidebar">
+
+<div id="sidebar">
+<ul>
+{% for app in installed_apps %}
+<li><a href="javascript:loadApp('{{ app }}');">{{ app }}</a></li>
+{% endfor %}
+</ul>
+</div><!-- sidebar -->
+
+<div id="apppage">
+<h2>Apps</h2>
+<p>To the left is a list of your installed Apps, clicking each one will offer configuration and management for them</p>
+</div><!-- apppage -->
+<div style="clear:both;"></div>
+
+</div><!-- page_body_section_with_sidebar -->
+{% endblock %}

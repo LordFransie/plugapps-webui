@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="margin:0;padding:0;" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>{% block title %}Plugapps{% endblock %}</title>
+    <link rel="shortcut icon"
+          href="/static/images/favicon.png"
+          type="image/vnd.microsoft.icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript" src="/static/jquery-1.4.4.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/jquery.jqplot.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/jquery.jqplot.css" />
+    <link rel="stylesheet" type="text/css" href="/static/jqueryFileTree.css" />
+	{% include "ajax.html" %}
+  </head>
+
+<body style="margin:0;padding:0;">
+<div id="main">
+<div id="inner-wrapper">
+<div id="content">
+<div id="page_body">
+<div id="page_body_toolbar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/files">Files</a></li>
+<li><a href="/apps">Apps</a></li>
+<li><a href="/system">System</a></li>
+<li><a href="/system/reboot">Reboot</a></li>
+<li><a href="/admin">Admin</a></li>
+</ul>
+<span id="login">Login</span><!-- login -->
+</div><!-- page_body_toolbar -->
+
+{% block content %}{% endblock %}
+<div id="page_body_footer">
+<span id="copyright">
+          Copyright &#169 2010
+</span><!-- copyright -->
+</div><!-- page_body_footer -->
+</div><!-- page_body -->
+</div><!-- content -->
+</div><!-- inner-wrapper -->
+</div><!--main -->
+</body> 
+
+
+</html>

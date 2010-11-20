@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Files{% endblock %}
+
+{% block content %}
+<script type="text/javascript" src="/static/jqueryFileTree.js"></script>
+<div class="page_body_section">
+<h2>File Browser</h2>
+<div id="files"></div>
+<script type="text/javascript"><!--
+
+function openFile(file) {
+    alert('Still need to implement this');
+}
+
+
+$(document).ready( function() {
+    $('#files').fileTree({
+        root: '/media/',
+        script: '/files/dirlist',
+        expandSpeed: -1,
+        collapseSpeed: -1,
+        loadMessage: 'Loading....',
+        multiFolder: true
+    }, function(file) {
+        openFile(file);
+    });
+});
+
+
+--></script>
+</div><!-- page_body_section -->
+{% endblock %}
