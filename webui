@@ -7,7 +7,6 @@ from fapws.contrib import django_handler, views
 from fapws import base
 import time
 import sys, os
-import django
 
 #setup environment
 sys.setcheckinterval(100000) # since we don't use threads, internal checks are no more required
