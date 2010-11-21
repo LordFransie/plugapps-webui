@@ -4,6 +4,8 @@ import privateapi
 import privateapi.core 
 import privateapi.pacman
 import privateapi.users
+import privateapi.minidlna
+import privateapi.samba
 
 def create_user(request):
 	username = request.post_vars.username
@@ -12,34 +14,36 @@ def create_user(request):
 	return HttpResponse(privateapi.users.create())
 	
 
-def isinstalled(request):
-    package_name = request.get_vars.name
-    return HttpResponse(getattr(privateapi, package_name).is_installed())
+def isinstalled(request,package):
+	if getattr(privateapi, package).is_installed():
+		return HttpResponse('True')
+	return HttpResponse('False')
    
  
-def isrunning(request):
-    package_name = request.get_vars.name
-    return HttpResponse(getattr(privateapi, package_name).is_running())
+def isrunning(request,package):
+	if getattr(privateapi, package).is_running():
+		return HttpResponse('True')
+	return HttpResponse('False')
     
  
-def startapp(request):
-    package_name = request.get_vars.name
-    return HttpResponse(getattr(privateapi, package_name).start())
+def startapp(request,package):
+	if getattr(privateapi, package).start():
+		return HttpResponse('True')
+	return HttpResponse('False')
     
  
-def stopapp(request):
-    package_name = request.get_vars.name
-    return HttpResponse(getattr(privateapi, package_name).stop()) 
+def stopapp(request,package):
+	if getattr(privateapi, package).stop():
+		return HttpResponse('True')
+	return HttpResponse('False')
     
  
-def getappconfig(request):
-    package_name = request.get_vars.name
-    return HttpResponse(getattr(privateapi, package_name).get_app_config())
+def getappconfig(request,package):
+    return HttpResponse(getattr(privateapi, package).get_app_config())
 
  
-def setappconfig(request):
-    package_name = request.get_vars.name
-    return HttpResponse(getattr(privateapi, package_name).set_app_config())
+def setappconfig(request,package):
+    return HttpResponse(getattr(privateapi, package).set_app_config())
     
 
 def doupdateos(request):

@@ -11,10 +11,10 @@ function start() {
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/api/startapp?name=' + package_name,
+        url : '/api/startapp/' + package_name,
         dataType : 'text',
         success: function (text) { 
-            checkStatus();
+            setTimeout(checkStatus, 3000);
         }
 });
 }
@@ -23,10 +23,10 @@ function stop() {
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/api/stopapp?name=' + package_name,
+        url : '/api/stopapp/' + package_name,
         dataType : 'text',
         success: function (text) { 
-            checkStatus();
+            setTimeout(checkStatus, 3000);
         }
 });
 }
@@ -35,7 +35,7 @@ function isInstalled() {
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/api/isinstalled?name=' + package_name,
+        url : '/api/isinstalled/' + package_name,
         dataType : 'text',
         success: function (text) { 
             if (text == "False") {
@@ -48,14 +48,18 @@ $.ajax({
 });
 }
 
-function checkStatus() {
+function setLoader() {
 $('#runstatus').html('<img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/>');
-var startLink =  'Stopped - <a style="text-decoration:underline;" href="#" onclick="javascript:start();">Click here to start</a>'
-var stopLink =  'Running - <a style="text-decoration:underline;" href="#" onclick="javascript:stop();">Click here to stop</a>'
+}
+
+function checkStatus() {
+setLoader();
+var startLink =  'Stopped - <a style="text-decoration:underline;" href="#" onclick="javascript:start();setLoader();">Click here to start</a>'
+var stopLink =  'Running - <a style="text-decoration:underline;" href="#" onclick="javascript:stop();setLoader();">Click here to stop</a>'
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/api/isrunning?name=' + package_name,
+        url : '/api/isrunning/' + package_name,
         dataType : 'text',
         success: function (text) { 
             if (text == "False") {

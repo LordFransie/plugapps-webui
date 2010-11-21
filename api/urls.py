@@ -2,12 +2,12 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
 
-	(r'^isinstalled$', 'api.views.isinstalled'),
-	(r'^isrunning$', 'api.views.isrunning'),
-	(r'^startapp$', 'api.views.startapp'),
-	(r'^stopapp$', 'api.views.stopapp'),
-	(r'^getappconfig$', 'api.views.getappconfig'),
-	(r'^setappconfig$', 'api.views.setappconfig'),
+	(r'^isinstalled/(?P<package>\w{1,50})/$', 'api.views.isinstalled'),
+	(r'^isrunning/(?P<package>\w{1,50})/$', 'api.views.isrunning'),
+	(r'^startapp/(?P<package>\w{1,50})/$', 'api.views.startapp'),
+	(r'^stopapp/(?P<package>\w{1,50})/$', 'api.views.stopapp'),
+	(r'^getappconfig/(?P<package>\w{1,50})/$', 'api.views.getappconfig'),
+	(r'^setappconfig/(?P<package>\w{1,50})/$', 'api.views.setappconfig'),
 	
 
 	(r'^doupdateos$', 'api.views.doupdateos'),
