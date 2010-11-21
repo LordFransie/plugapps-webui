@@ -13,6 +13,13 @@ def browse(request):
 def share(request):
     return render_to_response('files/share.html', {}, context_instance=RequestContext(request))
 
+def download(request):
+    return HttpResponse("File")
+	
+def upload(request):
+    return render_to_response('files/upload.html', {}, context_instance=RequestContext(request))
+	
+
 def dirlist(request):
    r=['<ul class="jqueryFileTree" style="display: none;">']
    try:

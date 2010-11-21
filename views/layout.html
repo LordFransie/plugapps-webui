@@ -28,23 +28,24 @@ $.ajax({
 <body style="margin:0;padding:0;">
 <div id="main">
 <div id="inner-wrapper">
-<div id="content">
-<div id="page_body">
-<div id="page_body_toolbar">
+<div id="headerbar">
 <ul>
 {% load active %}
 {% url home as home %}
 {% url files as files %}
 {% url apps as apps %}
 {% url system as system %}
+{% url users as users %}
 <li class="{% active request home %}"><a href="/home">Home</a></li>
 <li class="{% active request files %}"><a href="/files">Files</a></li>
 <li class="{% active request apps %}"><a href="/apps">Apps</a></li>
 <li class="{% active request system %}"><a href="/system">System</a></li>
+<li class="{% active request users %}"><a href="/users">Users</a></li>
 </ul>
 <span id="login">Login</span><!-- login -->
-</div><!-- page_body_toolbar -->
-
+</div><!-- headerbar -->
+<div id="content">
+<div id="page_body">
 {% block content %}{% endblock %}
 <div id="page_body_footer">
 <span id="copyright">

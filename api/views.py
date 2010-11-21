@@ -3,7 +3,14 @@ from django.http import HttpResponse
 import privateapi
 import privateapi.core 
 import privateapi.pacman
+import privateapi.users
 
+def create_user(request):
+	username = request.post_vars.username
+	email = request.post_vars.email
+	password = request.post_vars.password
+	return HttpResponse(privateapi.users.create())
+	
 
 def isinstalled(request):
     package_name = request.get_vars.name

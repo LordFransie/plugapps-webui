@@ -19,6 +19,10 @@ def index(request):
 	stats = {"currentuptime": currentuptime, "load": load, "memfree": memfree, "memtotal": memtotal, "percentfree": percentfree, "currentip": currentip, "platform": platform, "baseos": baseos, "kernelversion": kernelversion, "devicename": devicename, "processor": processor, "architecture": architecture } 
 	return render_to_response('system/index.html', stats, context_instance=RequestContext(request))
 
+def users(request):
+	return render_to_response('system/users.html', {}, context_instance=RequestContext(request))
+
+
 def storage(request):
 	mounted_device_list = privateapi.core.mounted_devices()
 	mounted_device_details = privateapi.core.mount_details()
