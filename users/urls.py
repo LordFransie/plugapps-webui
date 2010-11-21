@@ -4,6 +4,6 @@ from django.views.generic.simple import redirect_to
 urlpatterns = patterns('',
 	(r'^create$', 'users.views.create', {}, 'createuser'),
 	(r'^delete$', 'users.views.delete', {}, 'deleteuser'),
-	(r'^show', 'users.views.index', {}, 'showusers'),
+	(r'^show', 'users.views.index', {}, 'users'),
 	(r'^$', redirect_to, {'url': '/users/show'}),
 )

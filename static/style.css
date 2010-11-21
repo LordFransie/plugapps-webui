@@ -111,7 +111,7 @@ position:relative;
 
 #main #inner-wrapper #headerbar ul {
     list-style:none;
-    margin:0 0 0 15px;
+    margin:0;
     padding:0;
 }
 
@@ -180,45 +180,38 @@ font-weight:normal;
 }
 
 #main #inner-wrapper #content .page_body_section_with_sidebar {
-    background:transparent url('/static/images/sidebar-background.png') repeat-y;
     display:block;
-    min-height:250px;
     overflow:hidden;
-    padding-right:12px;
-    padding-bottom:24px;
+    padding-bottom:12px;
 }
 
 #main #inner-wrapper #content .page_body_section_with_sidebar #sidebar {
-      width:160px;
-      float:left;
 }
 
 #main #inner-wrapper #content .page_body_section_with_sidebar #sidebar ul {
       padding:0;
-      margin:10px;
+      margin:0;
       list-style:none;
 }
       
 #main #inner-wrapper #content .page_body_section_with_sidebar #sidebar ul li {
-      padding-left:0.5em;
-      margin-bottom:1.0em;
-      } 
+      padding:0;
+      margin:0;
+      display:inline-block;
+} 
 
 #main #inner-wrapper #content .page_body_section #configpage,
 #main #inner-wrapper #content .page_body_section_with_sidebar #configpage {
-      margin-left:160px;
       margin-bottom:24px;
 }
 
 #main #inner-wrapper #content .page_body_section #apppage,
 #main #inner-wrapper #content .page_body_section_with_sidebar #apppage {
-      margin-left:160px;
       margin-bottom:24px;
 }
       
 #main #inner-wrapper #content .page_body_section #filespage,
 #main #inner-wrapper #content .page_body_section_with_sidebar #filespage {
-      margin-left:160px;
       margin-bottom:24px;
 }
 
@@ -239,7 +232,7 @@ width:300px;
 #main #inner-wrapper #content .page_body_section h4,
 #main #inner-wrapper #content .page_body_section_with_sidebar h4 {
     padding:0;
-    margin:1em 0 0.2em 1em;
+    margin:1em 0 0.2em 0em;
 }
 
 #main #inner-wrapper #content .page_body_section_with_sidebar h4.storage-section {
@@ -255,13 +248,13 @@ padding-bottom:4px;
 
 #main #inner-wrapper #content .page_body_section_with_sidebar h2 {
     padding:0;
-    margin:1em 0 0.2em 0.5em;
+    margin:1em 0 0.2em 0em;
 }
 
 #main #inner-wrapper #content .page_body_section p,
 #main #inner-wrapper #content .page_body_section_with_sidebar p {
     padding:0;
-    margin:1em 0 0.2em 1em;
+    margin:1em 0 0.2em 0em;
 }
 
 #main #inner-wrapper #content .page_body_section span#osupdatebutton {
