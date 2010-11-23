@@ -42,7 +42,13 @@ $.ajax({
 <li class="{% active request system %}"><a href="/system">System</a></li>
 <li class="{% active request users %}"><a href="/users">Users</a></li>
 </ul>
-<span id="login">Login</span><!-- login -->
+<span id="login">
+{% if request.user.is_authenticated %}
+    Welcome {{ request.user.username|capfirst }} - <a href="/users/logout">Logout</a>
+{% else %}
+    <a href="/users/login">Login</a>
+{% endif %}
+</span><!-- login -->
 </div><!-- headerbar -->
 <div id="content">
 <div id="page_body">
