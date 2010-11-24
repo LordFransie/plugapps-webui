@@ -1,15 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-{% load active %}
-{% url browse as browse %}
-{% url shares as shares %}
 
 <div class="page_body_section_with_sidebar">
 <div id="sidebar">
 <ul>
-<li class="{% active request browse %}"><a href="/files/browse">Browse</a></li>
-<li class="{% active request shares %}"><a href="/files/shares">Shares</a></li>
+<li><a href="/files/browse">Browse</a></li>
+<li><a href="/files/shares">Shares</a></li>
 </ul>
 </div><!-- sidebar -->
 

@@ -1,20 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-{% load active %}
-{% url system as system %}
-{% url storage as storage %}
-{% url software as software %}
-{% url networking as networking %}
-{% url reboot as reboot %}
 <div class="page_body_section_with_sidebar">
 <div id="sidebar">
 <ul>
-<li class="{% active request system %}"><a href="/system/about">About Plug</a></li>
-<li class="{% active request storage %}"><a href="/system/storage">Storage</a></li>
-<li class="{% active request software %}"><a href="/system/software">Software</a></li>
-<li class="{% active request networking %}"><a href="/system/networking">Networking</a></li>
-<li class="{% active request reboot %}"><a href="/system/reboot">Reboot</a></li>
+<li><a href="/system/about">About Plug</a></li>
+<li><a href="/system/storage">Storage</a></li>
+<li><a href="/system/software">Software</a></li>
+<li><a href="/system/networking">Networking</a></li>
+<li><a href="/system/reboot">Reboot</a></li>
 </ul>
 </div><!-- sidebar -->
 
