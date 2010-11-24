@@ -17,7 +17,11 @@
 <body style="margin:0;padding:0;">
 <div id="main">
 <div id="inner-wrapper">
+<div id="logobar">
+<img src="/static/images/plugapps.png"/>
+</div><!-- logobar -->
 <div id="headerbar">
+<div id="nav">
 <ul>
 {% load active %}
 {% url home as home %}
@@ -38,6 +42,10 @@
     <a href="/users/login">Login</a>
 {% endif %}
 </span><!-- login -->
+</div><!-- nav -->
+<div id="subnav">
+{% block subnav %}{% endblock %}
+</div><!-- subnav -->
 </div><!-- headerbar -->
 <div id="content">
 <div id="page_body">

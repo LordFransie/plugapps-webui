@@ -1,14 +1,17 @@
 {% extends 'layout.html' %}
 
-{% block content %}
-
-<div class="page_body_section_with_sidebar">
+{% block subnav %}
 <div id="sidebar">
 <ul>
 <li><a href="/files/browse">Browse</a></li>
 <li><a href="/files/shares">Shares</a></li>
 </ul>
 </div><!-- sidebar -->
+{% endblock %}
+
+{% block content %}
+
+<div class="page_body_section_with_sidebar">
 
 {% block filespage %}{% endblock %}
 

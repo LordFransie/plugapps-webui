@@ -1,8 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block content %}
-
-<div class="page_body_section_with_sidebar">
+{% block subnav %}
 <div id="sidebar">
 <ul>
 {% for app in installed_apps %}
@@ -10,7 +8,11 @@
 {% endfor %}
 </ul>
 </div><!-- sidebar -->
+{% endblock %}
 
+{% block content %}
+
+<div class="page_body_section_with_sidebar">
 {% block apppage %}{% endblock %}
 
 </div><!-- page_body_section_with_sidebar -->

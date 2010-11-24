@@ -38,8 +38,8 @@ vertical-align:middle;
 }
 
 .current_page_item {
-font-weight:bold;
-text-decoration:underline;
+color:#fff;
+
 }
 
 span.device-stats {
@@ -106,32 +106,89 @@ font-size: 12px !important;
 }
 
 #main #inner-wrapper #headerbar {
+margin:12px 0 12px 0;
+position:relative;
+font-weight:bold;
+}
+
+#main #inner-wrapper #headerbar #nav {
+	background:url(/static/images/nav.png) repeat-x;
+	min-height:45px;
+	border-bottom-left-radius: 0px 0px;
+border-bottom-right-radius: 0px 0px;
+border-top-left-radius: 10px 10px;
+border-top-right-radius: 10px 10px;
+padding:0 12px;
 position:relative;
 }
 
-#main #inner-wrapper #headerbar ul {
+#main #inner-wrapper #headerbar #nav ul {
     list-style:none;
     margin:0;
     padding:0;
+	height:45px;
+	position:absolute;
+	left:12px;
+	top:10px;
 }
 
-#main #inner-wrapper #headerbar ul li {
-        padding:1.0em 8px 0 0;
-		color:#333;
+#main #inner-wrapper #headerbar #nav ul li {
+        padding:0 8px 0 0;
+		color:#eee;
 		font-size:0.8em;
         text-align:center;
         display:inline-block;
+		height:45px;
 }
 
-#main #inner-wrapper #headerbar ul li a {
+#main #inner-wrapper #headerbar #nav ul li a {
 		font-size:1.0em;
         height:36px;
-        color:#333;
+        color:#eee;
+		text-decoration:none;
+		height:45px;
+}
+/*--------- subnav ----------*/
+
+#main #inner-wrapper #headerbar #subnav {
+	background:url(/static/images/subnav.png) repeat-x;
+	min-height:37px;
+border-bottom-left-radius: 10px 10px;
+border-bottom-right-radius: 10px 10px;
+border-top-left-radius: 0px 0px;
+border-top-right-radius: 0px 0px;
+padding:0 12px;
+position:relative;
+}
+
+#main #inner-wrapper #headerbar #subnav ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+	height:37px;
+	position:absolute;
+	left:12px;
+	top:8px;
+}
+
+#main #inner-wrapper #headerbar #subnav ul li {
+        padding:0 8px 0 0;
+		color:#eee;
+		font-size:0.8em;
+        text-align:center;
+        display:inline-block;
+		height:37px;
+}
+
+#main #inner-wrapper #headerbar #subnav ul li a {
+		font-size:1.0em;
+        height:36px;
+        color:#eee;
 		text-decoration:none;
 }
 
 #main #inner-wrapper #headerbar span#login {
-color:#333;
+color:#eee;
 display:inline-block;
 font-weight:normal;
 font-size:0.9em;
@@ -141,13 +198,18 @@ top:10px;
 
 }
 
+#main #inner-wrapper #headerbar span#login a,
+#main #inner-wrapper #headerbar span#login a:visited {
+color:#eee;
+}
+
 #main #inner-wrapper #headerbar span#login .auth_navbar {
 font-family:helvetica;
 font-weight:normal;
 }
 
 #main #inner-wrapper #headerbar span#login .auth_navbar a, .auth_navbar a:visited {
-color:#fff;
+color:#eee;
 font-weight:normal;
 text-decoration:none;
 font-family:helvetica;

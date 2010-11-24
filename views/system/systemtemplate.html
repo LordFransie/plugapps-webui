@@ -1,7 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block content %}
-<div class="page_body_section_with_sidebar">
+{% block subnav %}
 <div id="sidebar">
 <ul>
 <li><a href="/system/about">About Plug</a></li>
@@ -11,6 +10,11 @@
 <li><a href="/system/reboot">Reboot</a></li>
 </ul>
 </div><!-- sidebar -->
+{% endblock %}
+
+{% block content %}
+
+<div class="page_body_section_with_sidebar">
 
 {% block configpage %}{% endblock %}
 
