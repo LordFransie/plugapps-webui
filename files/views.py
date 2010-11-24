@@ -4,22 +4,29 @@ from django.template import RequestContext
 
 import os, shlex,array, urllib
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def index(request):
     return render_to_response('files/index.html', {}, context_instance=RequestContext(request))
-	
+
+@login_required	
 def browse(request):
     return render_to_response('files/browse.html', {}, context_instance=RequestContext(request))
 
+@login_required
 def share(request):
     return render_to_response('files/share.html', {}, context_instance=RequestContext(request))
 
+@login_required
 def download(request):
     return HttpResponse("File")
-	
+
+@login_required	
 def upload(request):
     return render_to_response('files/upload.html', {}, context_instance=RequestContext(request))
 	
-
+@login_required
 def dirlist(request):
    r=['<ul class="jqueryFileTree" style="display: none;">']
    try:
