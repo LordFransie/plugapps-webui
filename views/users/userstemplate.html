@@ -1,6 +1,13 @@
 {% extends 'layout.html' %}
 
-{% block subnav %}{% endblock %}
+{% block subnav %}
+<div id="sidebar">
+<ul>
+<li><a href="/users/show">List</a></li>
+<li><a href="/users/create">Create</a></li>
+</ul>
+</div><!-- sidebar -->
+{% endblock %}
 
 {% block content %}
 
