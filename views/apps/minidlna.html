@@ -72,8 +72,8 @@ $.ajax({
 });
 }
 
-isInstalled();
-checkStatus();
+setTimeout(isInstalled, 3000);
+setTimeout(checkStatus, 3000);
 --></script>
 <div id="apppage">
 <h2>Minidlna is: <span id="installstatus"><img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></span></h2>

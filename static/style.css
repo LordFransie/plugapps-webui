@@ -64,7 +64,6 @@ body {
     margin:0;
     padding:0;
     font-family:helvetica;
-	//background:url("/static/images/metal-pattern5-256.jpg") repeat;
 }
 
 /* ----------- stuff for the file browser -------------------*/
@@ -101,7 +100,7 @@ font-size: 12px !important;
 
 #main #inner-wrapper {
         margin:0 auto;
-        width:1024px;
+        width:960px;
 		
 }
 
