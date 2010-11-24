@@ -125,7 +125,6 @@ position:relative;
     list-style:none;
     margin:0;
     padding:0;
-	height:45px;
 	position:absolute;
 	left:12px;
 	top:10px;
@@ -137,7 +136,7 @@ position:relative;
 		font-size:0.8em;
         text-align:center;
         display:inline-block;
-		height:45px;
+
 }
 
 #main #inner-wrapper #headerbar #nav ul li a {
@@ -164,7 +163,6 @@ position:relative;
     list-style:none;
     margin:0;
     padding:0;
-	height:37px;
 	position:absolute;
 	left:12px;
 	top:8px;
@@ -176,7 +174,6 @@ position:relative;
 		font-size:0.8em;
         text-align:center;
         display:inline-block;
-		height:37px;
 }
 
 #main #inner-wrapper #headerbar #subnav ul li a {
@@ -189,11 +186,11 @@ position:relative;
 #main #inner-wrapper #headerbar span#login {
 color:#eee;
 display:inline-block;
-font-weight:normal;
-font-size:0.9em;
+font-weight:bold;
+font-size:0.8em;
 position:absolute;
 right:16px;
-top:10px;
+top:14px;
 
 }
 
