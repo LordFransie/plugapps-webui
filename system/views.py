@@ -11,7 +11,8 @@ def index(request):
 	load = privateapi.core.getloadavg()
 	memfree = privateapi.core.getmemory_free() 
 	memtotal = privateapi.core.getmemory_total()
-	percentfree = privateapi.core.getmemory_percent()
+	memused = str(int(memtotal) - int(memfree))
+	percentused = str(100 - int(privateapi.core.getmemory_percent()))
 	currentip = privateapi.core.getcurrentip()
 	platform = privateapi.core.getplatform()
 	baseos =privateapi.core.getbaseos(),
@@ -19,7 +20,7 @@ def index(request):
 	devicename = privateapi.core.getdevicename()
 	processor = privateapi.core.getprocessor()
 	architecture = privateapi.core.getarchitecture()
-	stats = {"currentuptime": currentuptime, "load": load, "memfree": memfree, "memtotal": memtotal, "percentfree": percentfree, "currentip": currentip, "platform": platform, "baseos": baseos, "kernelversion": kernelversion, "devicename": devicename, "processor": processor, "architecture": architecture } 
+	stats = {"currentuptime": currentuptime, "load": load, "memused": memused, "memfree": memfree, "memtotal": memtotal, "percentused": percentused, "currentip": currentip, "platform": platform, "baseos": baseos, "kernelversion": kernelversion, "devicename": devicename, "processor": processor, "architecture": architecture } 
 	return render_to_response('system/index.html', stats, context_instance=RequestContext(request))
 
 @login_required
