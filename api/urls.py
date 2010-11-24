@@ -27,6 +27,4 @@ urlpatterns = patterns('',
 	(r'^memory_free$', 'api.views.memory_free'),
 	(r'^memory_percent$', 'api.views.memory_percent'),
 	
-
-	(r'^createuser$', 'api.views.create_user'),
 )
