@@ -31,23 +31,6 @@ $.ajax({
 });
 }
 
-function isInstalled() {
-$.ajax({
-        method: 'GET',
-        cache: false,
-        url : '/api/isinstalled/' + package_name,
-        dataType : 'text',
-        success: function (text) { 
-            if (text == "False") {
-                $('#installstatus').html("Not installed");
-            }
-            else {
-                $('#installstatus').html("Installed");
-            }
-        }
-});
-}
-
 function setLoader() {
 $('#runstatus').html('<img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/>');
 }
@@ -72,12 +55,18 @@ $.ajax({
 });
 }
 
-setTimeout(isInstalled, 3000);
 setTimeout(checkStatus, 3000);
 --></script>
 <div id="apppage">
-<h2>Minidlna is: <span id="installstatus"><img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></span></h2>
+<h2>Minidlna</h2>
 
 <p>Daemon is: <span id="runstatus"><img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></span></p>
+
+<h3>Configuration:</h3>
+<form action="" method="post">
+      {{ form.as_p }}
+	  {% csrf_token %}
+      <input type="submit" value="Go">
+  </form>
 </div><!-- apppage -->
 {% endblock %}

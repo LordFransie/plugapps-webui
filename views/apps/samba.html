@@ -31,23 +31,6 @@ $.ajax({
 });
 }
 
-function isInstalled() {
-$.ajax({
-        method: 'GET',
-        cache: false,
-        url : '/api/isinstalled/' + package_name,
-        dataType : 'text',
-        success: function (text) { 
-            if (text == "False") {
-                $('#installstatus').html("Not installed");
-            }
-            else {
-                $('#installstatus').html("Installed");
-            }
-        }
-});
-}
-
 function setLoader() {
 $('#runstatus').html('<img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/>');
 }
@@ -72,11 +55,10 @@ $.ajax({
 });
 }
 
-setTimeout(isInstalled, 3000);
 setTimeout(checkStatus, 3000);
 --></script>
 <div id="apppage">
-<h2>Samba is: <span id="installstatus"><img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></span></h2>
+<h2>Samba</h2>
 
 <p>Daemon is: <span id="runstatus"><img style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></span></p>
 </div><!-- apppage -->
