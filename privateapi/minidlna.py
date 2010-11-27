@@ -58,5 +58,14 @@ def get_config(file="/etc/minidlna.conf", delim='='):
 				d[kvp[0].strip()] = kvp[1].split('#')[0].strip()
 			else:
 				d[kvp[0].strip()] = kvp[1].strip()
+	if d['strict_dlna'] == 'no':
+		d['strict_dlna'] = False
+	else:
+		d['strict_dlna'] = True
+	if d['enable_tivo'] == 'no':
+		d['enable_tivo'] = False
+	else:
+		d['enable_tivo'] = True		
+	
 	return d
 		

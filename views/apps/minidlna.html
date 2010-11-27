@@ -64,9 +64,36 @@ setTimeout(checkStatus, 3000);
 
 <h3>Configuration:</h3>
 <form action="" method="post">
-      {{ form.as_p }}
+	
+	{{ form.strict_dlna.errors }}
+	{{ form.strict_dlna }}
+	<label for="id_strict_dlna">Strict DLNA</label>
+	<br/><br/>
+	{{ form.enable_tivo.errors }}
+	{{ form.enable_tivo }}
+	<label for="id_enable_tivo">Enable TiVO Support</label>
+	<br/><br/>
+	<label for="id_media_dir">Media Directory</label>
+	<br/>
+	{{ form.media_dir.errors }}
+	{{ form.media_dir }}
+	<br/><br/>
+	
+	<label for="id_serial">Serial</label>
+	<br/>
+	{{ form.serial.errors }}
+	{{ form.serial }}
+	<br/><br/>
+	
+	<label for="id_port">Network port</label>
+	<br/>
+	{{ form.port.errors }}
+	{{ form.port }}
+	<br/><br/>
+	
+	
 	  {% csrf_token %}
-      <input type="submit" value="Go">
+      <input type="submit" value="Save">
   </form>
 </div><!-- apppage -->
 {% endblock %}

@@ -8,15 +8,12 @@ import privateapi.minidlna
 import privateapi.samba
 
 class MinidlnaForm(forms.Form):
-	strict_dlna = forms.CharField()
-	enable_tivo = forms.CharField()
+	strict_dlna = forms.BooleanField()
+	enable_tivo = forms.BooleanField()
 	#album_art_names = forms.CharField(max_length=300)
 	media_dir = forms.CharField()
 	serial = forms.CharField()
 	port = forms.CharField()
-
-
-
 
 
 @login_required

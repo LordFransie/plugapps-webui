@@ -173,15 +173,10 @@ def getmemory_total():
 
 
 def getmemory_free():
-      re_parser = re.compile(r'^(?P<key>\S*):\s*(?P<value>\d*)\s*kB' )
-      result = dict()
-      for line in open('/proc/meminfo'):
-           match = re_parser.match(line)
-           if not match:
-                continue # skip lines that don't parse
-           key, value = match.groups(['key', 'value'])
-           result[key] = int(value)
-      return int(result.get("MemFree")) / 1024
+	cmd = """free | grep cache: | awk '{ print $4 }'"""
+	process = subprocess.Popen(cmd,stdout=subprocess.PIPE,shell=True)
+	freekb = process.stdout.read()
+	return int(freekb) / 1024
     
     
 def getmemory_percent():
