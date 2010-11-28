@@ -3,40 +3,39 @@
 
 import shlex, subprocess, re, socket, os
 
+
 def is_installed():
     fpath = "/usr/sbin/smbd"
-    return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
+    return os.path.isfile(fpath)
            
 def is_running():
-    fpath = "/var/run/samba/smbd.pid"
-    return os.path.isfile(fpath)
+	process = os.popen("ps x -o pid,args | grep -v grep | grep smbd").read()
+	if process:
+		return True
+	return False
 
 def start():
-    if is_installed():
-       base_start_command_raw = "sudo /etc/rc.d/samba start"
-       args = shlex.split(base_start_command_raw)
+    if not is_running():
+       start_command_raw = "sudo /etc/rc.d/samba start"
+       args = shlex.split(start_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        for line in process.stdout.readlines():
             newoutput = line.rstrip('\n')
-            if not ":: Starting Samba Server" in newoutput:
-                continue
-            elif ":: Starting Samba Server" in newoutput:
+            if ":: Starting Samba Server" in newoutput:
                 return True
        return False
     else:
-        return False
+        return True
 
 def stop():
-    if is_installed():
-       base_stop_command_raw = "sudo /etc/rc.d/samba stop"
-       args = shlex.split(base_stop_command_raw)
+    if is_running():
+       stop_command_raw = "sudo /etc/rc.d/samba stop"
+       args = shlex.split(stop_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        for line in process.stdout.readlines():
             newoutput = line.rstrip('\n')
-            if not ":: Stopping Samba Server" in newoutput:
-                continue
-            elif ":: Stopping Samba Server" in newoutput:
+            if ":: Stopping Samba Server" in newoutput:
                 return True
        return False
     else:
-        return False
+        return True
