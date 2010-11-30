@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.utils import simplejson
 
 import privateapi
 import privateapi.core 
@@ -7,6 +8,8 @@ import privateapi.minidlna
 import privateapi.samba
 
 from django.contrib.auth.decorators import login_required
+
+import urllib, os
 	
 @login_required
 def isinstalled(request,package):
@@ -98,3 +101,45 @@ def memory_free(request):
 @login_required    
 def memory_percent(request):
     return HttpResponse(privateapi.core.getmemory_percent())
+	
+@login_required
+def dirlist(request):
+   r=['<ul class="jqueryFileTree" style="display: none;">']
+   try:
+       returnvalue = ['<ul class="jqueryFileTree" style="display: none;">']
+       directory = urllib.unquote(request.POST['dir'])
+       
+       for file in os.listdir(directory):
+           fullpath = os.path.join(directory,file)
+           if os.path.isdir(fullpath):
+               r.append('<li class="directory collapsed"><a href="#" rel="%s/">%s</a></li>' % (fullpath,file))
+           else:
+               extension = os.path.splitext(file)[1][1:] # get .ext and remove dot
+               returnvalue.append('<li class="file ext_%s"><a href="#" rel="%s">%s</a></li>' % (extension,fullpath,file))
+       returnvalue.append('</ul>')
+   except Exception,exception:
+       returnvalue.append('Could not load directory: %s' % str(exception))
+   returnvalue.append('</ul>')
+   return HttpResponse(''.join(returnvalue))
+
+@login_required
+def jsondirlist(request):
+	dirdict = dict()
+	#directory = urllib.unquote(request.POST['dir'])
+	directory = urllib.unquote('/media/')
+	for file in os.listdir(directory):
+		currentfile = {}
+		fullpath = os.path.join(directory,file)
+		if os.path.isdir(fullpath):
+			currentfile['directory'] = True
+			currentfile['path'] = fullpath
+			currentfile['name'] = file
+			currentfile['extension'] = False
+		else:
+			extension = os.path.splitext(file)[1][1:] # get .ext and remove dot
+			currentfile['directory'] = False
+			currentfile['path'] = fullpath
+			currentfile['name'] = file
+			currentfile['extension'] = extension
+		dirdict[currentfile['name']] = currentfile
+	return HttpResponse(simplejson.dumps(dirdict),content_type = 'application/javascript; charset=utf8')

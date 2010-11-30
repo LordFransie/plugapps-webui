@@ -8,7 +8,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	(r'^dirlist$', 'files.views.dirlist'),
 	(r'^browse', 'files.views.browse', {}, 'browse'),
 	(r'^share', 'files.views.share', {}, 'share'),
 	(r'^about', 'files.views.index', {}, 'files'),

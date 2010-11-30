@@ -5,3 +5,4 @@
 webui.pid
 *.bak
 db.sqlite3
+.idea

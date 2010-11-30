@@ -18,6 +18,9 @@ urlpatterns = patterns('',
 
 	(r'^rebootnow$', 'api.views.rebootnow'),
 	
+	(r'^dirlist$', 'api.views.dirlist'),
+	(r'^jsondirlist$', 'api.views.jsondirlist'),
+	
 
 	(r'^diskuse$', 'api.views.diskuse'),
 	(r'^loadavg$', 'api.views.loadavg'),
