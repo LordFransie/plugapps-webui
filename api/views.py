@@ -112,7 +112,7 @@ def dirlist(request):
        for file in os.listdir(directory):
            fullpath = os.path.join(directory,file)
            if os.path.isdir(fullpath):
-               r.append('<li class="directory collapsed"><a href="#" rel="%s/">%s</a></li>' % (fullpath,file))
+               returnvalue.append('<li class="directory collapsed"><a href="#" rel="%s/">%s</a></li>' % (fullpath,file))
            else:
                extension = os.path.splitext(file)[1][1:] # get .ext and remove dot
                returnvalue.append('<li class="file ext_%s"><a href="#" rel="%s">%s</a></li>' % (extension,fullpath,file))
