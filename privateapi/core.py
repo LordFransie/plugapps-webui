@@ -67,18 +67,6 @@ def getcurrentip():
        s.connect(("plugapps.com",80))
        currentip_tuple = s.getsockname()
        return currentip_tuple[0]
-      
-def getplatform():
-       platform_cmd = "uname -s"
-       args = shlex.split(platform_cmd)
-       platform_process = subprocess.Popen(args,stdout=subprocess.PIPE)
-       return platform_process.stdout.read()
-
-def getbaseos():
-       baseos_cmd = "uname -n"
-       args = shlex.split(baseos_cmd)
-       baseos_process = subprocess.Popen(args,stdout=subprocess.PIPE)
-       return baseos_process.stdout.read().rstrip('\n')
 
 def getkernelversion():
        kernv_cmd = "uname -rv"

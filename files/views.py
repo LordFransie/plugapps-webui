@@ -40,12 +40,12 @@ def share(request):
 
 
 def download(request):
-    fileuuid = request.GET.get('id', '')
+	fileuuid = request.GET.get('id', '')
 	if fileuuid:
 		filerecord = Share(uuid=fileuuid)
-		response = HttpResponse(, mimetype='application/vnd.ms-excel')
+		response = HttpResponse(filerecord, mimetype='application/vnd.ms-excel')
 		response['Content-Disposition'] = 'attachment; filename=foo.xls'
-    return HttpResponse("Error, not a valid shared file")
+	return HttpResponse("Error, not a valid shared file")
 	
 @login_required
 def addshare(request):

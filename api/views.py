@@ -41,7 +41,7 @@ def getappconfig(request,package):
 
 @login_required 
 def setappconfig(request,package):
-    return HttpResponse(getattr(privateapi, package).set_app_config())
+	return HttpResponse(getattr(privateapi, package).set_app_config())
     
 @login_required
 def doupdateos(request):
