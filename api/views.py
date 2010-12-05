@@ -122,7 +122,7 @@ def dirlist(request):
    returnvalue.append('</ul>')
    return HttpResponse(''.join(returnvalue))
 
-@login_required
+
 def jsondirlist(request):
 	dirdict = dict()
 	#directory = urllib.unquote(request.POST['dir'])
