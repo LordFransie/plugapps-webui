@@ -13,7 +13,7 @@ def is_running():
 
 def start():
     if is_installed():
-       base_start_command_raw = "sudo /etc/rc.d/minidlna start"
+       base_start_command_raw = "/etc/rc.d/minidlna start"
        args = shlex.split(base_start_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        for line in process.stdout.readlines():
@@ -28,7 +28,7 @@ def start():
 
 def stop():
     if is_installed():
-       base_stop_command_raw = "sudo /etc/rc.d/minidlna stop"
+       base_stop_command_raw = "/etc/rc.d/minidlna stop"
        args = shlex.split(base_stop_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        for line in process.stdout.readlines():

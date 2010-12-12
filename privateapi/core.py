@@ -57,7 +57,7 @@ def mount_details():
     return mount_detail_list
 
 def rebootnow():
-       reboot_command_raw = "sudo reboot"
+       reboot_command_raw = "reboot"
        args = shlex.split(reboot_command_raw)
        process = subprocess.Popen(args)
        return "Done"

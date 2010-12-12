@@ -16,7 +16,7 @@ def is_running():
 
 def start():
     if not is_running():
-       start_command_raw = "sudo /etc/rc.d/samba start"
+       start_command_raw = "/etc/rc.d/samba start"
        args = shlex.split(start_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        for line in process.stdout.readlines():
@@ -29,7 +29,7 @@ def start():
 
 def stop():
     if is_running():
-       stop_command_raw = "sudo /etc/rc.d/samba stop"
+       stop_command_raw = "/etc/rc.d/samba stop"
        args = shlex.split(stop_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        for line in process.stdout.readlines():

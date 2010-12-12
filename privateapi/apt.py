@@ -4,7 +4,7 @@
 import shlex, subprocess, re, socket
 
 def check():
-    base_aptgetupdateupgrade_command_raw = "sudo apt-get update && sudo apt-get upgrade"
+    base_aptgetupdateupgrade_command_raw = "apt-get update && apt-get upgrade"
     args = shlex.split(base_pacmansyup_command_raw)
     process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
     output_list = []
@@ -17,7 +17,7 @@ def check():
     return True
            
 def list_upgrades():
-    base_aptgetupgrade_command_raw = "sudo apt-get upgrade"
+    base_aptgetupgrade_command_raw = "apt-get upgrade"
     args = shlex.split(base_aptgetupgrade_command_raw)
     process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
     output_list = []
@@ -27,7 +27,7 @@ def list_upgrades():
     return output_list
 
 def doupdateos():
-       base_upgrade_command_raw = "sudo apt-get -y upgrade"
+       base_upgrade_command_raw = "apt-get -y upgrade"
        args = shlex.split(base_upgrade_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        output_list = []

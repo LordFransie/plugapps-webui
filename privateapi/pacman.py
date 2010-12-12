@@ -4,7 +4,7 @@
 import shlex, subprocess, re, socket
 
 def check():
-    base_pacmansyup_command_raw = "sudo pacman -Syup"
+    base_pacmansyup_command_raw = "pacman -Syup"
     args = shlex.split(base_pacmansyup_command_raw)
     process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
     output_list = []
@@ -17,7 +17,7 @@ def check():
     return True
            
 def list_upgrades():
-    base_pacmanqu_command_raw = "sudo pacman -Qu"
+    base_pacmanqu_command_raw = "pacman -Qu"
     args = shlex.split(base_pacmanqu_command_raw)
     process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
     output_list = []
@@ -27,7 +27,7 @@ def list_upgrades():
     return output_list
 
 def doupdateos():
-       base_update_command_raw = "sudo pacman -Syu --noconfirm --noprogressbar"
+       base_update_command_raw = "pacman -Syu --noconfirm --noprogressbar"
        args = shlex.split(base_update_command_raw)
        process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
        output_list = []
