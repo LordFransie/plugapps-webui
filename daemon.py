@@ -75,11 +75,15 @@ class Daemon:
 		except IOError:
 			pid = None
 	
-		if pid:
-			message = "pidfile %s already exist. Daemon already running?\n"
-			sys.stderr.write(message % self.pidfile)
+		process = os.popen("ps x -o pid,args | grep -v grep | grep -v start | grep webui").read()
+		if "webui" in process:
+			print process
+			message = "WebUI is already running!\n"
+			sys.stderr.write(message)
 			sys.exit(1)
-		
+		else:
+			self.delpid()
+
 		# Start the daemon
 		self.daemonize()
 		self.run()
@@ -114,6 +118,8 @@ class Daemon:
 			else:
 				print str(err)
 				sys.exit(1)
+		if os.path.exists(self.pidfile):
+			os.remove(self.pidfile)
 
 	def restart(self):
 		"""
