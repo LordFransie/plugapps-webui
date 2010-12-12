@@ -52,14 +52,14 @@ var uptimeInterval = setInterval(updateUptime, 60000);
 <p>Device: {{ devicename }}</p>
 <p>Processor: {{ processor }}</p>
 <p>Architecture: {{ architecture }}</p>
-<p>Memory used: <meter min="0" max="100" value="{{ percentused }}"></meter> {{ memused }}MB</p>
-
 <h4>System Software</h4>
 <p>Base OS: Plugbox Linux</p>
 <p>Kernel Version: {{ kernelversion }}</p>
 <h4>Plug Status</h4>
 <p>Uptime: <span id="uptime">{{ currentuptime }}</span></p> 
+<p>Memory used: <meter min="0" max="100" value="{{ percentused }}"></meter> {{ memused }}MB</p>
 <p>Load: <span id="load">{{ load }}</span> (1min, 5min, 15min)</p>
+<p>Current IP: {{ currentip }}</p>
 </div><!-- configpage -->
 <div style="clear:both;"></div>
 {% endblock %}
