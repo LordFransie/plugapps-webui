@@ -174,3 +174,25 @@ def getmemory_percent():
       percent_pre = float(megabytes_free) / float(megabytes_total)
       percent_used = int((percent_pre *100))
       return percent_used
+	  
+def get_duck_leds():
+	duckleds = dict()
+	try:
+		f = open( "/sys/class/leds/dockstar:orange:misc/trigger" )
+		for trigger in shlex.split(f.read()):
+			if not "[" in trigger:
+				continue
+			duckleds['orangetrigger'] = trigger.strip('[').strip(']')   
+		f.close()
+	except:
+		return "Cannot open file: /sys/class/leds/dockstar:orange:misc/trigger"	
+	try:
+		f = open( "/sys/class/leds/dockstar:green:health/trigger" )
+		for trigger in shlex.split(f.read()):
+			if not "[" in trigger:
+				continue
+			duckleds['greentrigger'] = trigger.strip('[').strip(']')  
+		f.close()
+	except:
+		return "Cannot open file: /sys/class/leds/dockstar:green:health/trigger"
+	return duckleds
