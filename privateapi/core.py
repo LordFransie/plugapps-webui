@@ -174,7 +174,26 @@ def getmemory_percent():
       percent_pre = float(megabytes_free) / float(megabytes_total)
       percent_used = int((percent_pre *100))
       return percent_used
-	  
+
+def get_leds():
+	f = open( "/proc/cpuinfo", 'r' )
+	for line in f.readlines():
+		if "DockStar" in line:
+			return get_duck_leds()
+		else:
+			return get_sheeva_leds()
+	f.close()
+
+def set_led(led,trigger):
+	f = open( "/proc/cpuinfo", 'r' )
+	for line in f.readlines():
+		if "DockStar" in line:
+			return set_duck_led(led,trigger)
+	return set_sheeva_led(led,trigger)
+	f.close()	
+
+
+
 def get_duck_leds():
 	duckleds = dict()
 	duckleds['green_trigger'] = 'unknown'

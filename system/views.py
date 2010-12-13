@@ -63,10 +63,10 @@ def leds(request):
 	if request.method == 'POST':
 		form = LedForm(request.POST)
 		if form.is_valid():
-			privateapi.core.set_duck_led('green',form.cleaned_data['green_trigger'])
-			privateapi.core.set_duck_led('orange',form.cleaned_data['orange_trigger'])
+			privateapi.core.set_led('green',form.cleaned_data['green_trigger'])
+			privateapi.core.set_led('orange',form.cleaned_data['orange_trigger'])
 	else:
-		led_dict = privateapi.core.get_duck_leds()
+		led_dict = privateapi.core.get_leds()
 		form = LedForm(initial=led_dict)
 	return render_to_response('system/leds.html', { "form": form }, context_instance=RequestContext(request))
 	
