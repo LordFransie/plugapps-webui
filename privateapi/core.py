@@ -177,26 +177,44 @@ def getmemory_percent():
 	  
 def get_duck_leds():
 	duckleds = dict()
-	duckleds['greentrigger'] = 'unknown'
-	duckleds['orangetrigger'] = 'unknown'
+	duckleds['green_trigger'] = 'unknown'
+	duckleds['orange_trigger'] = 'unknown'
+	duckleds['green_status'] = 'unknown'
+	duckleds['orange_status'] = 'unknown'
 	try:
 		f = open( "/sys/class/leds/dockstar:orange:misc/trigger", 'r' )
 		for trigger in shlex.split(f.read()):
 			if not "[" in trigger:
 				continue
-			duckleds['orangetrigger'] = trigger.strip('[').strip(']')   
+			duckleds['orange_trigger'] = trigger.strip('[').strip(']')   
+		f.close()
+		
+		f = open( "/sys/class/leds/dockstar:orange:misc/brightness", 'r' )
+		if not "0" in f.read():
+			duckleds['orange_status'] = 'on'
+		else:
+			duckleds['orange_status'] = 'off'
 		f.close()
 	except:
 		pass	
+		
 	try:
 		f = open( "/sys/class/leds/dockstar:green:health/trigger", 'r' )
 		for trigger in shlex.split(f.read()):
 			if not "[" in trigger:
 				continue
-			duckleds['greentrigger'] = trigger.strip('[').strip(']')  
+			duckleds['green_trigger'] = trigger.strip('[').strip(']')  
+		f.close()
+		
+		f = open( "/sys/class/leds/dockstar:green:health/brightness", 'r' )
+		if not "0" in f.read():
+			duckleds['green_status'] = 'on'
+		else:
+			duckleds['green_status'] = 'off'
 		f.close()
 	except:
 		pass
+		
 	return duckleds
 	
 def set_duck_led(led,trigger):
@@ -214,13 +232,13 @@ def set_duck_led(led,trigger):
 	
 def get_sheeva_leds():
 	sheevaleds = dict()
-	sheevaleds['greentrigger'] = 'unknown'
+	sheevaleds['green_trigger'] = 'unknown'
 	try:
 		f = open( "/sys/class/leds/plug:green:health/trigger", 'r' )
 		for trigger in shlex.split(f.read()):
 			if not "[" in trigger:
 				continue
-			sheevaleds['greentrigger'] = trigger.strip('[').strip(']')   
+			sheevaleds['green_trigger'] = trigger.strip('[').strip(']')   
 		f.close()
 	except:
 		pass	

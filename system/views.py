@@ -1,9 +1,22 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django import forms
 import privateapi.core
 import privateapi.pacman
 
 from django.contrib.auth.decorators import login_required
+
+class LedForm(forms.Form):
+	TRIGGER_CHOICES = (
+		('none', 'No Trigger'),
+		('nand-disk', 'NAND Activity'),
+		('mmc0', 'SD Activity'),
+		('timer', 'Timer'),
+		('heartbeat', 'Heartbeat'),
+		('default-on', 'Default on'),
+	)
+	green_trigger = forms.ChoiceField(choices=TRIGGER_CHOICES)
+	orange_trigger = forms.ChoiceField(choices=TRIGGER_CHOICES)
 
 @login_required
 def index(request):
@@ -43,3 +56,17 @@ def software(request):
 @login_required
 def reboot(request):
 	return render_to_response('system/reboot.html', {}, context_instance=RequestContext(request))
+
+
+@login_required
+def leds(request):
+	if request.method == 'POST':
+		form = LedForm(request.POST)
+		if form.is_valid():
+			privateapi.core.set_duck_led('green',form.cleaned_data['green_trigger'])
+			privateapi.core.set_duck_led('orange',form.cleaned_data['orange_trigger'])
+	else:
+		led_dict = privateapi.core.get_duck_leds()
+		form = LedForm(initial=led_dict)
+	return render_to_response('system/leds.html', { "form": form }, context_instance=RequestContext(request))
+	

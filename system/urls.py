@@ -8,5 +8,6 @@ urlpatterns = patterns('',
 	(r'^networking$', 'system.views.networking', {}, 'networking'),
 	(r'^reboot$', 'system.views.reboot', {}, 'reboot'),
 	(r'^about', 'system.views.index', {}, 'system'),
+	(r'^leds', 'system.views.leds', {}, 'leds'),
 	(r'^$', redirect_to, {'url': '/system/about'}),
 )

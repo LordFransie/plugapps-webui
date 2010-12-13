@@ -1,0 +1,22 @@
+{% extends 'system/systemtemplate.html' %}
+
+{% block configpage %}
+<div id="configpage">
+<h2>Leds</h2>
+<form action="" method="post">
+	
+	{{ form.green_trigger.errors }}
+	{{ form.green_trigger }}
+	<label for="id_green_trigger">Green LED Trigger</label>
+	<br/><br/>
+	{{ form.orange_trigger.errors }}
+	{{ form.orange_trigger }}
+	<label for="id_orange_trigger">Orange LED Trigger</label>
+	<br/><br/>
+	{% csrf_token %}
+      <input type="submit" value="Save">
+  </form>
+
+
+</div><!-- configpage -->
+{% endblock %}
