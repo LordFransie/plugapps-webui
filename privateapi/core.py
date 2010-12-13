@@ -177,22 +177,64 @@ def getmemory_percent():
 	  
 def get_duck_leds():
 	duckleds = dict()
+	duckleds['greentrigger'] = 'unknown'
+	duckleds['orangetrigger'] = 'unknown'
 	try:
-		f = open( "/sys/class/leds/dockstar:orange:misc/trigger" )
+		f = open( "/sys/class/leds/dockstar:orange:misc/trigger", 'r' )
 		for trigger in shlex.split(f.read()):
 			if not "[" in trigger:
 				continue
 			duckleds['orangetrigger'] = trigger.strip('[').strip(']')   
 		f.close()
 	except:
-		return "Cannot open file: /sys/class/leds/dockstar:orange:misc/trigger"	
+		pass	
 	try:
-		f = open( "/sys/class/leds/dockstar:green:health/trigger" )
+		f = open( "/sys/class/leds/dockstar:green:health/trigger", 'r' )
 		for trigger in shlex.split(f.read()):
 			if not "[" in trigger:
 				continue
 			duckleds['greentrigger'] = trigger.strip('[').strip(']')  
 		f.close()
 	except:
-		return "Cannot open file: /sys/class/leds/dockstar:green:health/trigger"
+		pass
 	return duckleds
+	
+def set_duck_led(led,trigger):
+	try:
+		if led == 'orange':
+			f = open( "/sys/class/leds/dockstar:orange:misc/trigger", 'w' )
+			f.write(trigger)
+		elif led == 'green':
+			f = open( "/sys/class/leds/dockstar:green:health/trigger", 'w' )
+			f.write(trigger)
+		f.close()
+	except:
+		return False
+	return True
+	
+def get_sheeva_leds():
+	sheevaleds = dict()
+	sheevaleds['greentrigger'] = 'unknown'
+	try:
+		f = open( "/sys/class/leds/plug:green:health/trigger", 'r' )
+		for trigger in shlex.split(f.read()):
+			if not "[" in trigger:
+				continue
+			sheevaleds['greentrigger'] = trigger.strip('[').strip(']')   
+		f.close()
+	except:
+		pass	
+	return sheevaleds
+
+def set_sheeva_led(led,trigger):
+	try:
+		if led == 'orange':
+			f = open( "/sys/class/leds/plug:orange:misc/trigger", 'w' )
+			f.write(trigger)
+		elif led == 'green':
+			f = open( "/sys/class/leds/plug:green:health/trigger", 'w' )
+			f.write(trigger)
+		f.close()
+	except:
+		return False
+	return True
