@@ -103,43 +103,29 @@ def memory_percent(request):
     return HttpResponse(privateapi.core.getmemory_percent())
 	
 @login_required
-def dirlist(request):
-   r=['<ul class="jqueryFileTree" style="display: none;">']
-   try:
-       returnvalue = ['<ul class="jqueryFileTree" style="display: none;">']
-       directory = urllib.unquote(request.POST['dir'])
-       
-       for file in os.listdir(directory):
-           fullpath = os.path.join(directory,file)
-           if os.path.isdir(fullpath):
-               returnvalue.append('<li class="directory collapsed"><a href="#" rel="%s/">%s</a></li>' % (fullpath,file))
-           else:
-               extension = os.path.splitext(file)[1][1:] # get .ext and remove dot
-               returnvalue.append('<li class="file ext_%s"><a href="#" rel="%s">%s</a></li>' % (extension,fullpath,file))
-       returnvalue.append('</ul>')
-   except Exception,exception:
-       returnvalue.append('Could not load directory: %s' % str(exception))
-   returnvalue.append('</ul>')
-   return HttpResponse(''.join(returnvalue))
-
-
 def jsondirlist(request):
-	dirdict = dict()
-	#directory = urllib.unquote(request.POST['dir'])
-	directory = urllib.unquote('/media/')
+	dirs = []
+	if request.method == 'POST':
+		directory = urllib.unquote(request.POST['path'])
+	else:
+		directory = urllib.unquote('/media/')
 	for file in os.listdir(directory):
 		currentfile = {}
 		fullpath = os.path.join(directory,file)
 		if os.path.isdir(fullpath):
-			currentfile['directory'] = True
-			currentfile['path'] = fullpath
-			currentfile['name'] = file
-			currentfile['extension'] = False
+			currentfile['fullpath'] = fullpath
+			currentfile['directory'] = directory
+			currentfile['text'] = file
+			currentfile['iconCls'] = 'folder'
+			currentfile['leaf'] = False
+			currentfile['disabled'] = False
 		else:
 			extension = os.path.splitext(file)[1][1:] # get .ext and remove dot
-			currentfile['directory'] = False
-			currentfile['path'] = fullpath
-			currentfile['name'] = file
-			currentfile['extension'] = extension
-		dirdict[currentfile['name']] = currentfile
-	return HttpResponse(simplejson.dumps(dirdict),content_type = 'application/javascript; charset=utf8')
+			currentfile['fullpath'] = fullpath
+			currentfile['directory'] = directory
+			currentfile['text'] = file
+			currentfile['iconCls'] = 'file-' + extension
+			currentfile['leaf'] = True
+			currentfile['disabled'] = False
+		dirs.append(currentfile)
+	return HttpResponse(simplejson.dumps(dirs),content_type = 'application/javascript; charset=utf8')
