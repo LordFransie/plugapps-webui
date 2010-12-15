@@ -9,7 +9,7 @@ import privateapi.samba
 
 from django.contrib.auth.decorators import login_required
 
-import urllib, os
+import urllib, os, shutil
 	
 @login_required
 def isinstalled(request,package):
@@ -156,4 +156,21 @@ def fileapi(request):
 				response['error'] = 'Cannot create directory: %s' %(dir)
 			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
 					
-					
+		if request.POST['cmd'] == 'delete':
+			response = dict()
+			path = '/media/' + urllib.unquote(request.POST['file'])
+			if os.path.isdir(path):
+				try:
+					shutil.rmtree(path)
+					response['success'] = True
+				except:
+					response['success'] = False
+					response['error'] = 'Cannot delete directory: %s' %(path)
+			else:
+				try:
+					os.remove(path)
+					response['success'] = True
+				except:
+					response['success'] = False
+					response['error'] = 'Cannot delete file: %s' %(path)
+			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
