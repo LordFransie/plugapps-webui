@@ -188,7 +188,8 @@ def fileapi(request):
 				f = open( path , 'rb' )
 				mimetype = mimetypes.guess_type(f.name)
 				response = HttpResponse(f.read(), mimetype='%s' % mimetype[0])
-				response['Content-Disposition'] = 'attachment; filename=%s' % f.name
+				response['Content-Length'] = f.tell()
+				response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(f.name)
 			except:
 				(exc_type, exc_info, tb) = sys.exc_info()
 				tracebackstring = ''

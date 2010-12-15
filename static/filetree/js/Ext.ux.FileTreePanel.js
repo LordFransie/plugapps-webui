@@ -840,7 +840,8 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 			callback:callback,
 			params:{ cmd:'download', path: path }
 		};
-		Ext.Ajax.request(options);
+		//Ext.Ajax.request(options);
+		form.submit();
 	}
 	// }}}
 	// {{{
