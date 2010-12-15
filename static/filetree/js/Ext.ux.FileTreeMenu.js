@@ -41,35 +41,21 @@ Ext.ux.FileTreeMenu = function(config) {
 
 	// {{{
 	Ext.apply(config, {
-		items:[{
+		items:[
+		{
 			 text:'&#160'
 			,cls:'ux-ftm-nodename'
 			,disabledClass:''
 			,disabled:true
 			,cmd:'nodename'
 		},{
-			 text:this.openText + ' (Enter)'
-			,iconCls:this.openIconCls
-			,cmd:'open'
-			,menu:{
-				items:[{
-					 text:this.openSelfText
-					,iconCls:this.openSelfIconCls
-					,cmd:'open-self'
-				},{
-					 text:this.openPopupText
-					,iconCls:this.openPopupIconCls
-					,cmd:'open-popup'
-				},{
-					 text:this.openBlankText
-					,iconCls:this.openBlankIconCls
-					,cmd:'open-blank'
-				},{
-					 text:this.openDwnldText
-					,iconCls:this.openDwnldIconCls
-					,cmd:'open-dwnld'
-				}]
-			}
+			   text:this.openDwnldText
+			   ,iconCls:this.openDwnldIconCls
+			   ,cmd:'open-dwnld'
+		},{
+			   text:this.openBlankText
+			   ,iconCls:this.openBlankIconCls
+			   ,cmd:'open-blank'
 		}
 		,new Ext.menu.Separator({cmd:'sep-open'})
 		,{
@@ -118,7 +104,7 @@ Ext.ux.FileTreeMenu = function(config) {
 	Ext.ux.FileTreeMenu.superclass.constructor.call(this, config);
 
 	// relay event from submenu
-	this.relayEvents(this.getItemByCmd('open').menu, ['click', 'itemclick']);
+	//this.relayEvents(this.getItemByCmd('open').menu, ['click', 'itemclick']);
 
 }; // eo constructor
 

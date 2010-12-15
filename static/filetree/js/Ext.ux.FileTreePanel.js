@@ -1446,7 +1446,8 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		menu.getItemByCmd('nodename').setText(Ext.util.Format.ellipsis(node.text, 22));
 
 		// enable/disable items depending on node clicked
-		menu.setItemDisabled('open', !node.isLeaf());
+		menu.setItemDisabled('open-dwnld', !node.isLeaf());
+		menu.setItemDisabled('open-blank', !node.isLeaf());						  
 		menu.setItemDisabled('reload', node.isLeaf());
 		menu.setItemDisabled('expand', node.isLeaf());
 		menu.setItemDisabled('collapse', node.isLeaf());
@@ -1457,7 +1458,8 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		menu.setItemDisabled('upload-panel', node.isLeaf() ? node.parentNode.disabled : node.disabled);
 		
 		// show/hide logic
-		menu.getItemByCmd('open').setVisible(this.enableOpen);
+		menu.getItemByCmd('open-dwnld').setVisible(this.enableOpen);
+		menu.getItemByCmd('open-blank').setVisible(this.enableOpen);						  
 		menu.getItemByCmd('delete').setVisible(this.enableDelete);
 		menu.getItemByCmd('newdir').setVisible(this.enableNewDir);
 		menu.getItemByCmd('rename').setVisible(this.enableRename);
