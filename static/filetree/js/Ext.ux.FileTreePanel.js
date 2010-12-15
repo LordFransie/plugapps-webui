@@ -258,7 +258,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	/**
 	 * @cfg {String} url URL to use when communicating with server
 	 */
-	,url:'/api/jsondirlist'
+	,url:'/api/fileapi'
 	// }}}
 
 	// overrides

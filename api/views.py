@@ -103,29 +103,28 @@ def memory_percent(request):
     return HttpResponse(privateapi.core.getmemory_percent())
 	
 @login_required
-def jsondirlist(request):
-	dirs = []
+def fileapi(request):
 	if request.method == 'POST':
-		directory = urllib.unquote(request.POST['path'])
-	else:
-		directory = urllib.unquote('/media/')
-	for file in os.listdir(directory):
-		currentfile = {}
-		fullpath = os.path.join(directory,file)
-		if os.path.isdir(fullpath):
-			currentfile['fullpath'] = fullpath
-			currentfile['directory'] = directory
-			currentfile['text'] = file
-			currentfile['iconCls'] = 'folder'
-			currentfile['leaf'] = False
-			currentfile['disabled'] = False
-		else:
-			extension = os.path.splitext(file)[1][1:] # get .ext and remove dot
-			currentfile['fullpath'] = fullpath
-			currentfile['directory'] = directory
-			currentfile['text'] = file
-			currentfile['iconCls'] = 'file-' + extension
-			currentfile['leaf'] = True
-			currentfile['disabled'] = False
-		dirs.append(currentfile)
-	return HttpResponse(simplejson.dumps(dirs),content_type = 'application/javascript; charset=utf8')
+		if request.POST['cmd'] == 'get':
+			dirs = []
+			directory = urllib.unquote(request.POST['path'])
+			for file in os.listdir(directory):
+				currentfile = {}
+				fullpath = os.path.join(directory,file)
+				if os.path.isdir(fullpath):
+					currentfile['fullpath'] = fullpath
+					currentfile['directory'] = directory
+					currentfile['text'] = file
+					currentfile['iconCls'] = 'folder'
+					currentfile['leaf'] = False
+					currentfile['disabled'] = False
+				else:
+					extension = os.path.splitext(file)[1][1:] # get .ext and remove dot
+					currentfile['fullpath'] = fullpath
+					currentfile['directory'] = directory
+					currentfile['text'] = file
+					currentfile['iconCls'] = 'file-' + extension
+					currentfile['leaf'] = True
+					currentfile['disabled'] = False
+				dirs.append(currentfile)
+			return HttpResponse(simplejson.dumps(dirs),content_type = 'application/javascript; charset=utf8')
