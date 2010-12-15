@@ -60,7 +60,7 @@ Ext.onReady(function() {
 		id:'ftp',
 		title:'File Browser',
 		renderTo:'treepanel',
-		rootPath:'media',
+		rootPath:'',
 		topMenu:false,
 		autoScroll:true,
 		enableProgress:false,

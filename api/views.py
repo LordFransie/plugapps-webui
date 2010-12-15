@@ -107,7 +107,7 @@ def fileapi(request):
 	if request.method == 'POST':
 		if request.POST['cmd'] == 'get':
 			dirs = []
-			directory = urllib.unquote(request.POST['path'])
+			directory = '/media/' + urllib.unquote(request.POST['path'])
 			for file in os.listdir(directory):
 				currentfile = {}
 				fullpath = os.path.join(directory,file)
@@ -128,3 +128,32 @@ def fileapi(request):
 					currentfile['disabled'] = False
 				dirs.append(currentfile)
 			return HttpResponse(simplejson.dumps(dirs),content_type = 'application/javascript; charset=utf8')
+			
+		if request.POST['cmd'] == 'rename':
+				response = dict()
+				oldname = '/media/' + urllib.unquote(request.POST['oldname'])
+				newname = '/media/' + urllib.unquote(request.POST['newname'])
+				if os.path.exists(oldname):
+					try:
+						os.rename(oldname,newname)
+						response['success'] = True
+					except:
+						response['success'] = False
+						response['error'] = 'Cannot rename file %s to %s' %(oldname,newname)
+				else:
+					response['success'] = False
+					response['error'] = 'Cannot rename file %s to %s' %(oldname,newname)
+				return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+				
+		if request.POST['cmd'] == 'newdir':
+			response = dict()
+			dir = '/media/' + urllib.unquote(request.POST['dir'])
+			try:
+				os.mkdir(dir)
+				response['success'] = True
+			except:
+				response['success'] = False
+				response['error'] = 'Cannot create directory: %s' %(dir)
+			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+					
+					
