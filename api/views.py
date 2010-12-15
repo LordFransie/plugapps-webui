@@ -9,7 +9,7 @@ import privateapi.samba
 
 from django.contrib.auth.decorators import login_required
 
-import urllib, os, shutil
+import urllib, os, shutil, mimetypes
 	
 @login_required
 def isinstalled(request,package):
@@ -174,3 +174,23 @@ def fileapi(request):
 					response['success'] = False
 					response['error'] = 'Cannot delete file: %s' %(path)
 			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+			
+
+
+		if request.POST['cmd'] == 'download':
+			path = '/media/' + urllib.unquote(request.POST['path'])
+			if os.path.isdir(path):
+				response = HttpResponse("Cannot download directory!: %s" %(path))
+			else:
+				try:
+					f = open( path , 'rb' )
+					mimetype = mimetypes.guess_type(f)
+					response = HttpResponse(f.read(), mimetype=mimetype)
+					response['Content-Disposition'] = 'filename=%s' % f.name()
+				except:
+					response = HttpResponse("Cannot download file: %s" %(path))
+			return response
+			
+			
+			
+			

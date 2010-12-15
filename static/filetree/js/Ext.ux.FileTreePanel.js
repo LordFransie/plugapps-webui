@@ -52,7 +52,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	/**
 	 * @cfg {String} downloadUrl URL to use when downloading; this.url is used if not set (defaults to undefined)
 	 */
-
+	,downloadUrl:'/api/fileapi'
 	/**
 	 * @cfg {Boolean} enableDD true to enable drag & drop of files and folders (defaults to true)
 	 */
@@ -197,7 +197,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	 * @cfg {String} openMode Default file open mode. This mode is used when user dblclicks 
 	 * a file. Other valid values are '_self', '_blank' and 'download' (defaults to 'popup')
 	 */
-	,openMode:'popup'
+	,openMode:'download'
 
 	/**
 	 * @cfg {String} overwriteText Text to use in overwrite confirmation message box
@@ -232,7 +232,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	/**
 	 * @cfg {String} rootText Text to display for root node (defaults to 'Tree Root')
 	 */
-	,rootText:'Tree Root'
+	,rootText:'Media'
 
 	/**
 	 * @cfg {Boolean} rootVisible true = root node visible, false = hidden (defaults to true)
@@ -803,7 +803,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		var form = Ext.DomHelper.append(document.body, {
 			 tag:'form'
 			,method:'post'
-			,action:this.downloadUrl || this.url
+			,action:this.downloadUrl
 			,target:id
 		});
 
