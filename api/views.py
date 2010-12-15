@@ -104,11 +104,14 @@ def memory_percent(request):
 	
 @login_required
 def fileapi(request):
+	def nodot(item): 
+		return item[0] != '.'
+		
 	if request.method == 'POST':
 		if request.POST['cmd'] == 'get':
 			dirs = []
 			directory = '/media/' + urllib.unquote(request.POST['path'])
-			for file in os.listdir(directory):
+			for file in filter(nodot, os.listdir(directory)):
 				currentfile = {}
 				fullpath = os.path.join(directory,file)
 				if os.path.isdir(fullpath):
