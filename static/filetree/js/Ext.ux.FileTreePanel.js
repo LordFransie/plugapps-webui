@@ -833,7 +833,14 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		
 		Ext.EventManager.on(frame, 'load', callback, this);
 
-		form.submit();
+		// setup request options
+		var options = {
+			url:this.downloadUrl,
+			method:'post',
+			callback:callback,
+			params:{ cmd:'download', path: path }
+		};
+		Ext.Ajax.request(options);
 	}
 	// }}}
 	// {{{

@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.utils import simplejson
+from django.views.decorators.csrf import csrf_exempt
 
 import privateapi
 import privateapi.core 
@@ -9,7 +10,7 @@ import privateapi.samba
 
 from django.contrib.auth.decorators import login_required
 
-import urllib, os, shutil, mimetypes
+import urllib, os, shutil, mimetypes, traceback, sys
 	
 @login_required
 def isinstalled(request,package):
@@ -101,8 +102,9 @@ def memory_free(request):
 @login_required    
 def memory_percent(request):
     return HttpResponse(privateapi.core.getmemory_percent())
-	
-@login_required
+
+@login_required	
+@csrf_exempt
 def fileapi(request):
 	def nodot(item): 
 		return item[0] != '.'
@@ -182,16 +184,17 @@ def fileapi(request):
 
 		if request.POST['cmd'] == 'download':
 			path = '/media/' + urllib.unquote(request.POST['path'])
-			if os.path.isdir(path):
-				response = HttpResponse("Cannot download directory!: %s" %(path))
-			else:
-				try:
-					f = open( path , 'rb' )
-					mimetype = mimetypes.guess_type(f)
-					response = HttpResponse(f.read(), mimetype=mimetype)
-					response['Content-Disposition'] = 'filename=%s' % f.name()
-				except:
-					response = HttpResponse("Cannot download file: %s" %(path))
+			try:
+				f = open( path , 'rb' )
+				mimetype = mimetypes.guess_type(f.name)
+				response = HttpResponse(f.read(), mimetype='%s' % mimetype[0])
+				response['Content-Disposition'] = 'attachment; filename=%s' % f.name
+			except:
+				(exc_type, exc_info, tb) = sys.exc_info()
+				tracebackstring = ''
+				for tb in traceback.format_tb(tb):
+					tracebackstring += "%s\n" % tb
+				response = HttpResponse("Cannot download file: %s\n\n %s" % (path,tracebackstring))
 			return response
 			
 			
