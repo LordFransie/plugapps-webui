@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django import forms
@@ -12,7 +13,7 @@ class MinidlnaForm(forms.Form):
 	enable_tivo = forms.BooleanField()
 	#album_art_names = forms.CharField(max_length=300)
 	media_dir = forms.CharField()
-	serial = forms.CharField()
+	inotify = forms.CharField()
 	port = forms.CharField()
 
 
@@ -24,7 +25,10 @@ def index(request):
 @login_required
 def minidlna(request): 
 	if request.method == 'POST':
-		pass
+		form = MinidlnaForm(request.POST)
+		if form.is_valid():
+			privateapi.minidlna.set_config(form.cleaned_data)
+		return HttpResponseRedirect("/apps/minidlna")
 	else:
 		installed_apps = os.listdir("/etc/installed_apps/")
 		config_dict = privateapi.minidlna.get_config()

@@ -43,10 +43,6 @@ def stop():
 	
 def get_config(file="/etc/minidlna.conf", delim='='):
 	d = {}
-
-	if file is None:
-		return -1
-
 	for line in fileinput.input(file):
 		if not line.strip(): # skip empty or space padded lines
 			continue
@@ -69,3 +65,22 @@ def get_config(file="/etc/minidlna.conf", delim='='):
 	
 	return d
 		
+def set_config(configdict):
+	try:
+		file = open("/etc/minidlna.conf", 'rw')
+		for line in fileinput.FileInput(file.name, inplace=1):
+			line.replace("port=","port=" + configdict['port'])
+			line.replace("media_dir=","media_dir=" + configdict['media_dir'])
+			line.replace("inotify=","inotify=" + configdict['inotify'])
+			line.replace("enable_tivo=","enable_tivo=" + configdict['enable_tivo'])
+			line.replace("strict_dlna=","strict_dlna=" + configdict['strict_dlna'])
+		file.close()
+		return True
+	except:
+		if file:
+			file.close()
+		return False
+		
+	
+	
+	
