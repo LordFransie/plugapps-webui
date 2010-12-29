@@ -26,6 +26,17 @@ def list_upgrades():
         output_list.append(newoutput)
     return output_list
 
+def list_installed():
+    base_pacmanqu_command_raw = "pacman -Q"
+    args = shlex.split(base_pacmanqu_command_raw)
+    process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
+    output_list = []
+    for line in process.stdout.readlines():
+        newoutput = line.rstrip('\n')
+        output_list.append(newoutput)
+    return output_list
+
+
 def doupdateos():
        base_update_command_raw = "pacman -Syu --noconfirm --noprogressbar"
        args = shlex.split(base_update_command_raw)
