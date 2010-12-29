@@ -71,7 +71,7 @@ def checkforupdates(request):
 		return HttpResponse("No updates found")
 
 @login_required    
-def listinstalled(request):
+def checkforapps(request):
 	hasapps = privateapi.pacman.check()
 	if hasapps:
 		applist = privateapi.pacman.list_installed()
