@@ -6,7 +6,7 @@ function checkUpdates() {
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/api/checkforupdates',
+        url : '/api/checkforapps',
         dataType : 'html',
         success: function (html) { $('#os').html(html); }
 });
