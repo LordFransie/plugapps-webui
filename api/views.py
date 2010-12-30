@@ -70,6 +70,21 @@ def checkforupdates(request):
 	else:
 		return HttpResponse("No updates found")
 
+@login_required    
+def checkforapps(request):
+	hasapps = privateapi.pacman.check()
+	if hasapps:
+		applist = privateapi.pacman.list_installed()
+		response = "Apps found:<br/><br/>"
+		for package in applist:
+			response += '<p class="packagename">'
+			response += package
+			response += '</p><br/>'
+		return HttpResponse(response)
+	else:
+		return HttpResponse("No apps found, you should get that looked at")
+
+
 @login_required	
 def rebootnow(request):
     return HttpResponse(privateapi.core.rebootnow())
