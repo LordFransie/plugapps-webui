@@ -197,7 +197,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	 * @cfg {String} openMode Default file open mode. This mode is used when user dblclicks 
 	 * a file. Other valid values are '_self', '_blank' and 'download' (defaults to 'popup')
 	 */
-	,openMode:'download'
+	,openMode:'popup'
 
 	/**
 	 * @cfg {String} overwriteText Text to use in overwrite confirmation message box
