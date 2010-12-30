@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 	(r'^doupdateos$', 'api.views.doupdateos'),
 	(r'^listupgrades$', 'api.views.listupgrades'),
 	(r'^checkforupdates$', 'api.views.checkforupdates'),
-        (r'^checkforapps$', 'api.views.checkforapps'),
+	(r'^list_installed$', 'api.views.list_installed'),
 	
 
 	(r'^rebootnow$', 'api.views.rebootnow'),

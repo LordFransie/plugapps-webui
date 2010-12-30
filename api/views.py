@@ -67,23 +67,28 @@ def checkforupdates(request):
 			packagedict['version'] = packagedetails[1]
 			returnlist[counter] = packagedict
 			counter += 1
+		returnlist['numberofpackages'] = counter
 	else:
 		returnlist['hasupgrades'] = False
 	return HttpResponse(simplejson.dumps(returnlist),content_type = 'application/javascript; charset=utf8')
 
 @login_required    
-def checkforapps(request):
-	hasapps = privateapi.pacman.check()
-	if hasapps:
-		applist = privateapi.pacman.list_installed()
-		response = "Apps found:<br/><br/>"
-		for package in applist:
-			response += '<p class="packagename">'
-			response += package
-			response += '</p><br/>'
-		return HttpResponse(response)
+def list_installed(request):
+	package_list = privateapi.pacman.list_installed()
+	returnlist = dict()
+	if package_list:
+		returnlist['success'] = True
+		counter = 0
+		for package in package_list:
+			packagedict = dict()
+			packagedict['name'] = package[0]
+			packagedict['version'] = package[1]
+			returnlist[counter] = packagedict
+			counter += 1
+		returnlist['numberofpackages'] = counter
 	else:
-		return HttpResponse("No apps found, you should get that looked at")
+		returnlist['success'] = False
+	return HttpResponse(simplejson.dumps(returnlist),content_type = 'application/javascript; charset=utf8')
 
 
 @login_required	
