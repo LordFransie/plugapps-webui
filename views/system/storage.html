@@ -11,9 +11,21 @@ $.jqplot.config.enablePlugins = true;
 <h4 class="storage-section">Mountpoint: {{ details.5 }}</h4>
 <span class="device-stats">
 <p>Device name: {{ details.0 }}</p>
-<p>Device size: {{ details.1 }}</p>
-<p>Space used: {{ details.2 }}</p>
-<p>Space free: {{ details.3 }}</p>
+<p>Device size: <script type="text/javascript"><!-- 
+var aString = new String("{{ details.1 }}"); 
+var x = aString / 1024; 
+document.write(Math.round(x),"MB"); 
+--></script></p>
+<p>Space used: <script type="text/javascript"><!-- 
+var aString = new String("{{ details.2 }}"); 
+var x = aString / 1024; 
+document.write(Math.round(x),"MB"); 
+--></script></p>
+<p>Space free: <script type="text/javascript"><!-- 
+var aString = new String("{{ details.3 }}"); 
+var x = aString / 1024; 
+document.write(Math.round(x),"MB"); 
+--></script></p>
 <p>Filesystem: {{ details.7 }}</p>
 </span><!-- device-stats -->
 <div class="plot-area">
