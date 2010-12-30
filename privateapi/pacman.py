@@ -33,7 +33,8 @@ def list_installed():
     output_list = []
     for line in process.stdout.readlines():
         newoutput = line.rstrip('\n')
-        output_list.append(newoutput)
+        currentpackage = shlex.split(newoutput)
+        output_list.append(currentpackage)
     return output_list
 
 

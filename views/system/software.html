@@ -2,33 +2,37 @@
 
 {% block configpage %}
 <script type="text/javascript">
+
 function checkUpdates() {
+
 $.ajax({
         method: 'GET',
         cache: false,
-        url : '/api/checkforapps',
-        dataType : 'html',
-        success: function (html) { $('#os').html(html); }
-});
-$.ajax({
-        method: 'GET',
-        cache: false,
-        url : '/api/hasupgrades',
-        dataType : 'text',
-        success: function (text) { 
-            if (text == "False") {
+        url : '/api/checkforupdates',
+        dataType : 'json',
+        success: function (json) { 
+		
+			var returnlist = json;
+			if (returnlist.hasupgrades) {
+				$('#upgradebuttons').show();
+				$('#os').html(json); 
             }
             else {
-                $('#upgradebuttons').show();
+                $('#os').html("No upgrades"); 
             }
-        }
+			
+		}
 });
+
 }
+
 
 checkUpdates();
 </script>
 <div id="configpage">
 <h2>Software</h2>
+<span id="upgrades">
+<h4>Available Upgrades:</h4>
 <p><span id="os"><img alt="checking" src="/static/images/bar.gif"/></span></p>
 
 <div id="upgradebuttons">
@@ -50,7 +54,7 @@ checkUpdates();
         success: function (html) { $('#os').html(html);}
         });
         $('#upgradebuttons').hide();
-"/>
+		"/>
 </span>
 
 <span class="button">
@@ -64,5 +68,20 @@ checkUpdates();
        onClick="location.href='/';"/>
 </span>
 </div><!-- upgradebuttons -->
+</span><!-- upgrades -->
+<span id="installedpackages">
+<h4>Installed Packages</h4>
+<table>
+<th>Package Name</th>
+<th>Current Version</th>
+{% for package in installed_packages %}
+<tr>
+<td>{{ package.0 }}</td>
+<td>{{ package.1 }}</td>
+</tr>
+{% endfor %}
+</table>
+</span>
+<div id="clear"></div>
 </div><!-- configpage -->
 {% endblock %}

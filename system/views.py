@@ -51,7 +51,8 @@ def networking(request):
     
 @login_required  
 def software(request):
-	return render_to_response('system/software.html', {}, context_instance=RequestContext(request))
+	installed_packages = privateapi.pacman.list_installed()
+	return render_to_response('system/software.html', { "installed_packages": installed_packages }, context_instance=RequestContext(request))
 
 @login_required
 def reboot(request):

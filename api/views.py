@@ -51,24 +51,25 @@ def doupdateos(request):
 @login_required
 def listupgrades(request):
     return HttpResponse(privateapi.pacman.list_upgrades())
-    
-@login_required
-def hasupgrades(request):
-    return HttpResponse(privateapi.pacman.check())
 
 @login_required    
 def checkforupdates(request):
 	hasupdates = privateapi.pacman.check()
+	returnlist = dict()
 	if hasupdates:
+		returnlist['hasupgrades'] = True
 		updatelist = privateapi.pacman.list_upgrades()
-		response = "System updates found:<br/><br/>"
+		counter = 0
 		for package in updatelist:
-			response += '<p class="packagename">'
-			response += package
-			response += '</p><br/>'
-		return HttpResponse(response)
+			packagedetails = shlex.split(package)
+			packagedict = dict()
+			packagedict['name'] = packagedetails[0]
+			packagedict['version'] = packagedetails[1]
+			returnlist[counter] = packagedict
+			counter += 1
 	else:
-		return HttpResponse("No updates found")
+		returnlist['hasupgrades'] = False
+	return HttpResponse(simplejson.dumps(returnlist),content_type = 'application/javascript; charset=utf8')
 
 @login_required    
 def checkforapps(request):
